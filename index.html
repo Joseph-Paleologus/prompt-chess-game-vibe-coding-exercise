@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tournament Results</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- PapaParse for CSV -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <!-- js-yaml for YAML parsing of prompt_collection files -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <h1>🏆 Prompt Game Tournament</h1>
+      <p class="subtitle">Final Standings & Statistics</p>
+    </div>
+    <div class="controls">
+      <input id="searchInput" placeholder="🔍 Search player..." />
+      <button id="themeToggle">🌓 Toggle Theme</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="leaderboard-section">
+      <div class="section-header">
+        <h2>Leaderboard</h2>
+        <div class="sort-controls">
+          <label>Sort by:</label>
+          <button id="sortRank" class="sort-btn active">Rank</button>
+          <button id="sortWinRate" class="sort-btn">Win Rate</button>
+          <button id="sortMu" class="sort-btn">Mu Rating</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="leaderboard" class="leaderboard">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Player</th>
+              <th>Model</th>
+              <th>Rating (Mu ± Sigma)</th>
+              <th>Wins</th>
+              <th>Draws</th>
+              <th>Losses</th>
+              <th>Win Rate</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="charts-section">
+      <h2>Statistics</h2>
+      <div class="charts">
+        <div class="chart-card">
+          <h3>Win Rates</h3>
+          <canvas id="winRateChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Rating Distribution (Mu)</h3>
+          <canvas id="ratingChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Games: Wins / Draws / Losses</h3>
+          <canvas id="gamesChart"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Player details modal -->
+  <div id="playerModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn">✕</button>
+      <div id="playerDetails"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <small>Data loaded from <code>data/final_standings.csv</code> and <code>data/prompt_collection/</code></small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
