@@ -38,7 +38,7 @@ Browsers block fetch() for local `file://` pages, so you need to run a simple HT
 
 ```bash
 # Navigate to project directory
-cd "/Users/niruichen/Desktop/Master classes/Intro To GenAI/prompt-chess-game-vibe-coding-exercise-main"
+cd "../prompt-chess-game-vibe-coding-exercise-main"
 
 # Start HTTP server (macOS/Linux)
 python3 -m http.server 8000
